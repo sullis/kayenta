@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.netflix.kayenta.aws2.config.AwsConfiguration

@@ -1,0 +1,15 @@
+dependencies {
+  implementation project(":kayenta-core")
+
+  api(platform("software.amazon.awssdk:bom:2.25.53"))
+  api "software.amazon.awssdk:core"
+  api "software.amazon.awssdk:s3"
+  api "software.amazon.awssdk:sts"
+  api "software.amazon.awssdk:aws-crt-client"
+
+  compileOnly 'org.projectlombok:lombok:1.18.32'
+  annotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+  testCompileOnly 'org.projectlombok:lombok:1.18.32'
+  testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+}
