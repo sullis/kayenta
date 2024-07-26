@@ -1,8 +1,7 @@
 dependencies {
   implementation project(":kayenta-core")
 
-  api(platform("software.amazon.awssdk:bom:2.25.53"))
-  api "software.amazon.awssdk:core"
+  api(platform("software.amazon.awssdk:bom:2.26.24"))
   api "software.amazon.awssdk:s3"
   api "software.amazon.awssdk:sts"
   api "software.amazon.awssdk:aws-crt-client"
