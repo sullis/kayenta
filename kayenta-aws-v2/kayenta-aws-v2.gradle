@@ -1,10 +1,10 @@
+
 dependencies {
   implementation project(":kayenta-core")
 
-  api(platform("software.amazon.awssdk:bom:2.26.24"))
-  api("software.amazon.awssdk:s3") {
+  api("software.amazon.awssdk:s3:$awsSdk2Version") {
     exclude group: 'software.amazon.awssdk', module: 'apache-client'
   }
-  api "software.amazon.awssdk:sts"
-  api "software.amazon.awssdk:aws-crt-client"
+  api("software.amazon.awssdk:sts:$awsSdk2Version")
+  api("software.amazon.awssdk:aws-crt-client:$awsSdk2Version")
 }

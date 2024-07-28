@@ -2,7 +2,5 @@ dependencies {
   implementation project(":kayenta-core")
   implementation project(":kayenta-aws-v2")
 
-  api "software.amazon.awssdk:s3"
-  api "org.apache.httpcomponents:httpclient"
-  api "org.apache.httpcomponents:httpcore"
+  api "software.amazon.awssdk:s3:$awsSdk2Version"
 }

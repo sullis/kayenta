@@ -16,6 +16,8 @@
 
 package com.netflix.kayenta.aws2.config;
 
+import static java.util.Optional.ofNullable;
+
 import com.netflix.kayenta.aws2.security.AwsCredentials;
 import com.netflix.kayenta.aws2.security.AwsNamedAccountCredentials;
 import com.netflix.kayenta.security.AccountCredentials;
@@ -41,9 +43,6 @@ import software.amazon.awssdk.core.client.config.SdkClientConfiguration;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3AsyncClient;
 import software.amazon.awssdk.services.s3.S3AsyncClientBuilder;
-
-import static java.util.Optional.ofNullable;
-
 
 @Configuration
 @ConditionalOnProperty("kayenta.aws2.enabled")
@@ -72,12 +71,11 @@ public class AwsConfiguration {
 
       if (awsManagedAccount.getProxyProtocol() != null) {
         if (awsManagedAccount.getProxyProtocol().equalsIgnoreCase("HTTPS")) {
-          clientConfiguration.setProtocol(Protocol.HTTPS);
+          clientConfigurationBuilder.setProtocol(Protocol.HTTPS);
         } else {
-          clientConfiguration.setProtocol(Protocol.HTTP);
+          clientConfigurationBuilder.setProtocol(Protocol.HTTP);
         }
-        ofNullable(awsManagedAccount.getProxyHost())
-            .ifPresent(clientConfiguration::setProxyHost);
+        ofNullable(awsManagedAccount.getProxyHost()).ifPresent(clientConfiguration::setProxyHost);
         ofNullable(awsManagedAccount.getProxyPort())
             .map(Integer::parseInt)
             .ifPresent(clientConfiguration::setProxyPort);
@@ -112,7 +110,7 @@ public class AwsConfiguration {
         amazonS3ClientBuilder.endpointOverride(URI.create(endpoint));
         amazonS3ClientBuilder.forcePathStyle(true);
       } else {
-        Optional<String>.ofNullable(awsManagedAccount.getRegion())
+        Optional.ofNullable(awsManagedAccount.getRegion())
             .ifPresent(r -> amazonS3ClientBuilder.region(Region.of(r)));
       }
 
